@@ -1,0 +1,57 @@
+img {
+  width: 30%;
+  height: 30%;
+}
+h2 {
+	font-size: 3vw;
+	margin: 30px;
+	color: #ffc107;
+}
+
+.z-text {
+	animation: wobble 12s ease-in-out infinite;
+	transform: rotateX(30deg) rotateY(-30deg);
+}
+
+.z-layer:nth-child(1) {
+	color: rgb(252, 3, 156);
+}
+
+.z-layer:nth-child(2) {
+	color: #023504;
+}
+
+.z-layer:nth-child(3) {
+	color: #b53f59;
+}
+
+@keyframes wobble {
+	0%,
+	100% {
+		transform: rotate3d(-1, 1, 0, 30deg);
+	}
+	25% {
+		transform: rotate3d(1, 1, 0, 30deg);
+	}
+	50% {
+		transform: rotate3d(1, -1, 0, 30deg);
+	}
+	75% {
+		transform: rotate3d(-1, -1, 0, 30deg);
+	}
+}
+.slider{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.slide{
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	float: left;
+	position: absolute;
+}

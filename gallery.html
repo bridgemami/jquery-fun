@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- Students: Please use this week's project for Week 7: Assignment 7: jQuery Plugin Promotional Site. 
+     You will need to replace the contents of this HTML file with your own work, 
+     and create any other files, if any, required for the assignment.
+     When you are done, be certain to submit the assignment in both Repl.it and Canvas to be graded. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CS50C Week07</title>
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script> 
+<link href="slider.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="my_style.css">
+      
+  </head>
+  <body>
+  <header>
+    <h1>What can jQuery plugin do for you?</h1>
+</header>
+<h5>Use the arrows on your keyboard to move the gallary</h5>
+<div class="card-carousel">
+  <div class="my-card"><img src="img/area_md.jpg" alt="The Area"></div>
+  <div class="my-card"><img src="img/dome_md.jpg" alt="The Church"></div>
+  <div class="my-card"><img src="img/greek_flag_md.jpg" alt="Greek Flag"><span>The Flag</span></div>
+  <div class="my-card"><img src="img/sunset_md.jpg" alt=""></div>
+  <div class="my-card"><img src="img/greek_flag_md.jpg" alt="Sunset"></div>
+  <div class="my-card"><img src="img/wheel_md.jpg" alt="The Wheel"></div>
+</div>
+<script>
+   $num = $('.my-card').length;
+$even = $num / 2;
+$odd = ($num + 1) / 2;
+ 
+if ($num % 2 == 0) {
+  $('.my-card:nth-child(' + $even + ')').addClass('active');
+  $('.my-card:nth-child(' + $even + ')').prev().addClass('prev');
+  $('.my-card:nth-child(' + $even + ')').next().addClass('next');
+} else {
+  $('.my-card:nth-child(' + $odd + ')').addClass('active');
+  $('.my-card:nth-child(' + $odd + ')').prev().addClass('prev');
+  $('.my-card:nth-child(' + $odd + ')').next().addClass('next');
+}
+ 
+$('.my-card').click(function() {
+  $slide = $('.active').width();
+  console.log($('.active').position().left);
+  
+  if ($(this).hasClass('next')) {
+    $('.card-carousel').stop(false, true).animate({left: '-=' + $slide});
+  } else if ($(this).hasClass('prev')) {
+    $('.card-carousel').stop(false, true).animate({left: '+=' + $slide});
+  }
+  
+  $(this).removeClass('prev next');
+  $(this).siblings().removeClass('prev active next');
+  
+  $(this).addClass('active');
+  $(this).prev().addClass('prev');
+  $(this).next().addClass('next');
+});
+ 
+ 
+// Keyboard nav
+$('html body').keydown(function(e) {
+  if (e.keyCode == 37) { // left
+    $('.active').prev().trigger('click');
+  }
+  else if (e.keyCode == 39) { // right
+    $('.active').next().trigger('click');
+  }
+});
+ </script>
+  </body>
+  </html>
